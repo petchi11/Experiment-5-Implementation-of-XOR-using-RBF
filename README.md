@@ -57,7 +57,7 @@ from tensorflow.keras.initializers import RandomUniform, Initializer, Constant
 def gaussian_rbf(x, landmark, gamma=1):
     return np.exp(-gamma * np.linalg.norm(x - landmark)**2)
     
-    def end_to_end(X1, X2, ys, mu1, mu2):
+def end_to_end(X1, X2, ys, mu1, mu2):
     from_1 = [gaussian_rbf(i, mu1) for i in zip(X1, X2)]
     from_2 = [gaussian_rbf(i, mu2) for i in zip(X1, X2)]
     # plot
@@ -84,6 +84,8 @@ def gaussian_rbf(x, landmark, gamma=1):
     plt.title("Transformed Inputs: Linearly Seperable", fontsize=15)
     plt.legend()
 
+    # solving problem using matrices form
+    # AW = Y
     A = []
 
     for i, j in zip(from_1, from_2):
@@ -100,13 +102,13 @@ def gaussian_rbf(x, landmark, gamma=1):
     print(f"Weights: {W}")
     return W
     
-    def predict_matrix(point, weights):
+def predict_matrix(point, weights):
     gaussian_rbf_0 = gaussian_rbf(np.array(point), mu1)
     gaussian_rbf_1 = gaussian_rbf(np.array(point), mu2)
     A = np.array([gaussian_rbf_0, gaussian_rbf_1, 1])
     return np.round(A.dot(weights))
     
-    x1 = np.array([0, 0, 1, 1])
+x1 = np.array([0, 0, 1, 1])
 x2 = np.array([0, 1, 0, 1])
 ys = np.array([0, 1, 1, 0])
 
@@ -137,8 +139,10 @@ print(f"Input:{np.array([1, 1])}, Predicted: {predict_matrix(np.array([1, 1]), w
 ```
 
 ## OUTPUT :
-![image](https://user-images.githubusercontent.com/105230321/201342895-7e6b64ec-3dac-4e52-abfb-9bf09f5f4ad1.png)
-![image](https://user-images.githubusercontent.com/105230321/201342944-b3399cff-d4a2-4394-9536-1e229e0ce05d.png)
+![image](https://user-images.githubusercontent.com/105230321/201352206-f6619d54-5306-4612-ac6f-775da8507513.png)
+
+![image](https://user-images.githubusercontent.com/105230321/201352243-7ee2e199-7947-40d0-a0e4-6db45479e280.png)
+
 
 
 ## RESULT:
