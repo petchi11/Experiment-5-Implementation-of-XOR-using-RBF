@@ -144,7 +144,6 @@ print(f"Input:{np.array([1, 1])}, Predicted: {predict_matrix(np.array([1, 1]), w
 ![image](https://user-images.githubusercontent.com/105230321/201352243-7ee2e199-7947-40d0-a0e4-6db45479e280.png)
 
 
-
 ## RESULT:
   Thus, the implementaion of XOR using RBF is executed successfully.
 
